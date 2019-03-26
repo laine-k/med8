@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
 
 @Component({
   selector: 'app-emotion-happy',
@@ -11,7 +12,9 @@ export class EmotionHappyComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  @ViewChild('videoHappy') video; 
+
+  ngOnInit() { }
   selectEmotion(event, emo:string){
     const isSelected = event.target.classList.contains('selected');
     if(isSelected){
@@ -24,5 +27,16 @@ export class EmotionHappyComponent implements OnInit {
       event.target.classList.add('selected');
     }
     console.log(this.selectedEmotions);
+  }
+  playVideo(){
+    this.video.nativeElement.play();
+    console.log(this.video.nativeElement, 'play video');
+  }
+  pauseVideo(){
+    this.video.nativeElement.pause();
+    console.log(this.video.nativeElement, 'pause video');
+  }
+  checkAnswer(){
+    
   }
 }

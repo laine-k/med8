@@ -1,14 +1,22 @@
-<p>
-  emotion-happy works!
-</p>
-<div class="slectEmotionContainer">
-  <a (click)="selectEmotion($event, 'angry')">
-    <img src="../../../assets/photos/face-angry.png">
-  </a>
-  <a (click)="selectEmotion($event, 'sad')">
-    <img src="../../../assets/photos/face-sad.png">
-  </a>
-  <a (click)="selectEmotion($event, 'happy')">
-    <img src="../../../assets/photos/face-happy.png">
-  </a>
-</div>
+
+  <video #videoHappy>
+    <source src="../../../assets/video/animation-happy.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="video-controls">
+    <ion-button (click)="playVideo()">PLAY</ion-button>
+    <ion-button (click)="pauseVideo()">PAUSE</ion-button>
+  </div>
+  <div class="slectEmotionContainer">
+    <a (click)="selectEmotion($event, 'angry')">
+      <img src="../../../assets/photos/face-angry.png">
+    </a>
+    <a (click)="selectEmotion($event, 'sad')">
+      <img src="../../../assets/photos/face-sad.png">
+    </a>
+    <a (click)="selectEmotion($event, 'happy')">
+      <img src="../../../assets/photos/face-happy.png">
+    </a>
+  </div>
+
+

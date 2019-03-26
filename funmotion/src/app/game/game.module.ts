@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { GamePage } from './game.page';
 import { EmotionHappyComponent } from './emotion-happy/emotion-happy.component';
+import { AffectivaComponent } from './affectiva/affectiva.component';
+
+
 
 const routes: Routes = [
   {
@@ -22,6 +25,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [GamePage, EmotionHappyComponent]
+  declarations: [GamePage, EmotionHappyComponent, AffectivaComponent]
+  
 })
 export class GamePageModule {}

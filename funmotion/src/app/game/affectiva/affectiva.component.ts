@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import * as $ from 'jquery';
 declare var affdex;
 @Component({
   selector: 'app-affectiva',
@@ -10,14 +11,13 @@ export class AffectivaComponent implements OnInit {
   constructor() {
     //console.log(affdex);
    }
-  @ViewChild('affdexElements') affdexElements; 
-
   ngOnInit() {
         /*
       SDK Needs to create video and canvas nodes in the DOM in order to function
       Here we are adding those nodes a predefined div.
         */
-    var divRoot = this.affdexElements[0];
+    //var divRoot = this.affdexElements[0];
+    var divRoot = $('#affdexElements')[0];
 
     // The captured frame's width in pixels
     var width = 640;
@@ -54,6 +54,9 @@ export class AffectivaComponent implements OnInit {
   startDetection(){
     console.log('start', this.detector);
     this.detector.start();
+  }
+  changeTextColor(){
+    $('#myButton').text('pink');
   }
 
 }

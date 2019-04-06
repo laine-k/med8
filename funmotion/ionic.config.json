@@ -1,7 +1,0 @@
-{
-  "name": "funmotion",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}

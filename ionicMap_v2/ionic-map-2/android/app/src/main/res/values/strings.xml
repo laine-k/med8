@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ionic-map-2</string>
+    <string name="title_activity_main">ionic-map-2</string>
+    <string name="package_name">com.ionicmap.app</string>
+    <string name="fileprovider_authority">com.ionicmap.app.fileprovider</string>
+    <string name="custom_url_scheme">com.ionicmap.app</string>
+</resources>

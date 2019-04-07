@@ -1,12 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { GoogleMapsComponent } from '../components/google-maps/google-maps.component';
+import { GoogleMapsComponent } from '../../components/google-maps/google-maps.component';
+import {  MenuController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-map',
+  templateUrl: 'map.page.html',
+  styleUrls: ['map.page.scss'],
 })
-export class HomePage {
+export class MapPage {
 
   // marker vars
   private iconCastle = '../../../assets/icon/castle.png';
@@ -18,7 +19,10 @@ export class HomePage {
   private markerTuraidaCastle = {lat:57.182835, long:24.850292};
   private markerFolksongHill = {lat:57.183948, long:24.853241};
   @ViewChild(GoogleMapsComponent) mapComponent: GoogleMapsComponent;
-    constructor() {
+    constructor( 
+      
+    private menu: MenuController
+    ) {
 
     }
 
@@ -32,6 +36,10 @@ export class HomePage {
       this.mapComponent.addMarker(this.markerGutmanaCave.lat, this.markerGutmanaCave.long, this.iconCave);
       this.mapComponent.addMarker(this.markerTuraidaCastle.lat, this.markerTuraidaCastle.long, this.iconHill);
       this.mapComponent.addMarker(this.markerFolksongHill.lat, this.markerFolksongHill.long, this.iconCave);
+    }
+    openFirst() {
+      this.menu.enable(true, 'first');
+      this.menu.open('first');
     }
 
 }

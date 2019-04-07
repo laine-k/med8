@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
-import { GoogleMapsComponent } from '../components/google-maps/google-maps.component';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +17,6 @@ import { GoogleMapsComponent } from '../components/google-maps/google-maps.compo
       }
     ])
   ],
-  declarations: [HomePage, GoogleMapsComponent]
+  declarations: [HomePage]
 })
 export class HomePageModule {}

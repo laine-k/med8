@@ -189,7 +189,7 @@ export class GoogleMapsComponent {
             position: latLng,
             icon:icon
         });
-        console.log('add marker called', lat, lng);
+        console.log('add marker called again', lat, lng);
 
         this.markers.push(marker);
         let content = "<h4>Information!</h4>";          
@@ -208,6 +208,4 @@ export class GoogleMapsComponent {
         });
     
     }
-    // google.maps.event.addListener(marker, 'click', function() {window.location.href = marker.url;});
-
 }

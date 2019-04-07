@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>     
+      <ion-buttons slot="start">
+        
+          <button ion-button menuToggle>
+              <ion-icon name="menu"></ion-icon>
+            </button>
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  <google-map apiKey="AIzaSyBbFOIiQeHR3Th5Or-t4qenYAUTxVaI1lI"></google-map>
+</ion-content>
+<ion-footer>
+  <ion-button color="light" full (click)="addRouteMarkers()">Test Marker</ion-button>
+</ion-footer>

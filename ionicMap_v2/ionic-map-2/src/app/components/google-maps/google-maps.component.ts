@@ -17,19 +17,32 @@ export class GoogleMapsComponent {
     public markers: any[] = [];
     private mapsLoaded: boolean = false;
     private networkHandler = null;
-    private markerGutmanaCave = {lat:57.176364, long:24.842824};
+
+    // marker vars
     private iconCastle = '../../../assets/icon/castle.png';
+    private iconCave = '../../../assets/icon/cave.png';
+    private iconHill = '../../../assets/icon/church.png';
+    private markerGutmanaCave = {lat:57.176364, long:24.842824};
+    private markerTuraidaCastle = {lat:57.182835, long:24.850292};    
+    private markerFolksongHill = {lat:57.183948, long:24.853241};
+    private textCave = 'The Tragic End - Gutmana Cave';
+    private textCastle = 'The story begins...Turaida Castle';
+    private textChurch = 'Oldest Wooden Church and roses over grave';
 
     
 
-    constructor(private renderer: Renderer2, private element: ElementRef, @Inject(DOCUMENT) private _document){
+    constructor(
+        private renderer: Renderer2,
+        private element: ElementRef,
+        @Inject(DOCUMENT) private _document){
 
     }
 
     ngOnInit(){
 
         this.init().then((res) => {
-            console.log("Google Maps ready.")
+            console.log("Google Maps ready.");
+            this.addRouteMarkers();
         }, (err) => {    
             console.log(err);
         });
@@ -158,7 +171,7 @@ export class GoogleMapsComponent {
             Geolocation.getCurrentPosition().then((position) => {
 
                 console.log(position);
-                let latLng = new google.maps.LatLng(this.markerGutmanaCave.lat, this.markerGutmanaCave.long);
+                let latLng = new google.maps.LatLng(this.markerTuraidaCastle.lat, this.markerTuraidaCastle.long);
                 // let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
                 let mapOptions = {
@@ -179,7 +192,7 @@ export class GoogleMapsComponent {
 
     }
 
-    public addMarker(lat: number, lng: number, icon): void {
+    public addMarker(lat: number, lng: number, icon, content): void {
 
         let latLng = new google.maps.LatLng(lat, lng);
 
@@ -192,9 +205,9 @@ export class GoogleMapsComponent {
         console.log('add marker called again', lat, lng);
 
         this.markers.push(marker);
-        let content = "<h4>Information!</h4>";          
+        //let content = "<h4>Information!</h4>";          
 
-  this.addInfoWindow(marker, content);
+    this.addInfoWindow(marker, content);
 
     }
     addInfoWindow(marker, content){
@@ -207,5 +220,10 @@ export class GoogleMapsComponent {
           infoWindow.open(this.map, marker);
         });
     
+    }
+    addRouteMarkers(){
+        this.addMarker(this.markerGutmanaCave.lat, this.markerGutmanaCave.long, this.iconCave, this.textCave);
+        this.addMarker(this.markerTuraidaCastle.lat, this.markerTuraidaCastle.long, this.iconCastle, this.textCastle);
+        this.addMarker(this.markerFolksongHill.lat, this.markerFolksongHill.long, this.iconHill, this.textChurch);
     }
 }

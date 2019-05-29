@@ -10,6 +10,7 @@ export class StoryPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('init story');
   }
 
 }

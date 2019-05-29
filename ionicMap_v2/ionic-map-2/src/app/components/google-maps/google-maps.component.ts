@@ -168,7 +168,7 @@ export class GoogleMapsComponent {
 
         return new Promise((resolve, reject) => {
 
-            Geolocation.getCurrentPosition().then((position) => {
+            Geolocation.getCurrentPosition({ timeout: 30000, enableHighAccuracy: true }).then((position) => {
 
                 console.log(position);
                 let latLng = new google.maps.LatLng(this.markerTuraidaCastle.lat, this.markerTuraidaCastle.long);
@@ -183,7 +183,7 @@ export class GoogleMapsComponent {
                 resolve(true);
 
             }, (err) => {
-
+                console.log(err, 'Maps error');
                 reject('Could not initialise map');
 
             });

@@ -1,0 +1,6 @@
+{
+  "appId": "com.ionicmap.app",
+  "appName": "ionic-map-2",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

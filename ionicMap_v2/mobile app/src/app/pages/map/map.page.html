@@ -1,0 +1,26 @@
+<ion-header>  
+  <ion-button expand="block" routerLink="/map"><ion-icon name="camera"></ion-icon></ion-button> 
+</ion-header>
+
+<ion-content>  
+  <google-map apiKey="AIzaSyBbFOIiQeHR3Th5Or-t4qenYAUTxVaI1lI"></google-map>
+</ion-content>
+
+
+<ion-footer>
+  <ion-tab-bar slot="bottom">       
+      <ion-tab-button routerLink="/home">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>Home</ion-label>
+      </ion-tab-button>       
+   
+      <ion-tab-button routerLink="/map" >
+          <ion-icon name="compass"></ion-icon>
+          <ion-label>Map</ion-label>
+      </ion-tab-button>
+     <ion-tab-button routerLink="/story">
+          <ion-icon name="bonfire"></ion-icon>
+          <ion-label>Story</ion-label>
+      </ion-tab-button>       
+  </ion-tab-bar>
+</ion-footer>

@@ -22,6 +22,11 @@ export class GoogleMapsComponent {
     private iconCastle = '../../../assets/icon/castle.png';
     private iconCave = '../../../assets/icon/cave.png';
     private iconHill = '../../../assets/icon/church.png';
+    private myLocationIcon = {
+        path: 'M11 11l1.256 5 3.744-10-10 3.75 5 1.25zm1-11c-5.522 0-10 4.395-10 9.815 0 5.505 4.375 9.268 10 14.185 5.625-4.917 10-8.68 10-14.185 0-5.42-4.478-9.815-10-9.815zm0 18c-4.419 0-8-3.582-8-8s3.581-8 8-8 8 3.582 8 8-3.581 8-8 8z',
+        scale: 1,
+        fillColor: '#3a84df'
+      };
     // markers in Latvia
     // private markerGutmanaCave = {lat:57.176364, long:24.842824};
     // private markerTuraidaCastle = {lat:57.182835, long:24.850292};    
@@ -185,6 +190,12 @@ export class GoogleMapsComponent {
                 };
 
                 this.map = new google.maps.Map(this.element.nativeElement, mapOptions);
+                new google.maps.Marker({
+                    map: this.map,
+                    animation: google.maps.Animation.DROP,
+                    position: latLng,
+                    icon: this.myLocationIcon
+                  });
                 resolve(true);
 
             }, (err) => {

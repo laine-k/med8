@@ -43,18 +43,7 @@ export class MapPage {
       }
       this.camera.getPicture(options).then((imageData) => {
     
-       
-       //this.params.image = normalizeURL(imageData);
-       //this.params.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + imageData);
-        //needs to import file plugin
-       //split the file and the path from FILE_URI result
-      // let filename = imageData.substring(imageData.lastIndexOf('/')+1);
-      // let path =  imageData.substring(0,imageData.lastIndexOf('/')+1);
-      //   //then use the method reasDataURL  btw. var_picture is ur image variable
-      //   this.file.readAsDataURL(path, filename).then(res=> {
-      //     this.params.image = res;
-      //     console.warn('IMAGE DATA',res);
-      //   });
+     
       this.params.image = window.Ionic.WebView.convertFileSrc(imageData);
       console.warn('NEW PARAMS',this.params.image );
 

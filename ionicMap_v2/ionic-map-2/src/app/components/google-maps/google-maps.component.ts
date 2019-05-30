@@ -22,11 +22,15 @@ export class GoogleMapsComponent {
     private iconCastle = '../../../assets/icon/castle.png';
     private iconCave = '../../../assets/icon/cave.png';
     private iconHill = '../../../assets/icon/church.png';
-    private markerGutmanaCave = {lat:57.176364, long:24.842824};
-    private markerTuraidaCastle = {lat:57.182835, long:24.850292};    
-    private markerFolksongHill = {lat:57.183948, long:24.853241};
-    private textCave = 'The Tragic End - Gutmana Cave';
-    private textCastle = 'The story begins...Turaida Castle';
+    // markers in Latvia
+    // private markerGutmanaCave = {lat:57.176364, long:24.842824};
+    // private markerTuraidaCastle = {lat:57.182835, long:24.850292};    
+    // private markerFolksongHill = {lat:57.183948, long:24.853241};
+    private markerGutmanaCave = {lat: 55.645913, long:12.343160};
+    private markerTuraidaCastle = {lat:55.657564, long:12.369189}; 
+    private markerFolksongHill = {lat:55.654894, long:12.352415};
+    private textCave = 'Gutmana Cave';
+    private textCastle = 'Turaida Castle';
     private textChurch = 'Oldest Wooden Church and roses over grave';
 
     
@@ -168,11 +172,12 @@ export class GoogleMapsComponent {
 
         return new Promise((resolve, reject) => {
 
-            Geolocation.getCurrentPosition({ timeout: 30000, enableHighAccuracy: true }).then((position) => {
+            Geolocation.getCurrentPosition({ timeout: 50000, enableHighAccuracy: false }).then((position) => {
 
                 console.log(position);
-                let latLng = new google.maps.LatLng(this.markerTuraidaCastle.lat, this.markerTuraidaCastle.long);
-                // let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                // Latvia location:
+                // let latLng = new google.maps.LatLng(this.markerTuraidaCastle.lat, this.markerTuraidaCastle.long);
+                let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
                 let mapOptions = {
                     center: latLng,

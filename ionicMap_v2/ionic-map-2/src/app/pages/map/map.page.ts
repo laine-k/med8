@@ -1,8 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { GoogleMapsComponent } from '../../components/google-maps/google-maps.component';
-import {  MenuController } from '@ionic/angular';
+import {  MenuController, NavController, NavParams } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-
+import { Plugins } from '@capacitor/core';
+import { ImagesService } from '../../images.service';
+const { Geolocation, Network } = Plugins;
+import {DomSanitizer} from '@angular/platform-browser';
+import { File } from '@ionic-native/file/ngx';
+declare let window: any; // <--- Declare it like this
 @Component({
   selector: 'app-map',
   templateUrl: 'map.page.html',
@@ -10,14 +16,14 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class MapPage {
 
-  
+    public base64Image;
+    public params = {image:{}, location:{}};
+    
     @ViewChild(GoogleMapsComponent) mapComponent: GoogleMapsComponent;
 
-    constructor(private camera: Camera) {
+    constructor(private file: File, private sanitizer: DomSanitizer, private camera: Camera, public router: Router, public navCtrl:NavController,private imgService:ImagesService) {
       
-    }
-
-    
+    }  
   
 
     testMarker(){
@@ -31,15 +37,38 @@ export class MapPage {
         quality: 100,
         destinationType: this.camera.DestinationType.FILE_URI,
         encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
+        mediaType: this.camera.MediaType.PICTURE,
+        saveToPhotoAlbum: true,
+        correctOrientation: true
       }
       this.camera.getPicture(options).then((imageData) => {
-        // imageData is either a base64 encoded string or a file URI
-        // If it's base64 (DATA_URL):
-        //console.log(imageData, 'image data');
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
+    
+       
+       //this.params.image = normalizeURL(imageData);
+       //this.params.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + imageData);
+        //needs to import file plugin
+       //split the file and the path from FILE_URI result
+      // let filename = imageData.substring(imageData.lastIndexOf('/')+1);
+      // let path =  imageData.substring(0,imageData.lastIndexOf('/')+1);
+      //   //then use the method reasDataURL  btw. var_picture is ur image variable
+      //   this.file.readAsDataURL(path, filename).then(res=> {
+      //     this.params.image = res;
+      //     console.warn('IMAGE DATA',res);
+      //   });
+      this.params.image = window.Ionic.WebView.convertFileSrc(imageData);
+      console.warn('NEW PARAMS',this.params.image );
+
+       // add geolocation together with image data and pass to the service
+       Geolocation.getCurrentPosition({ timeout: 50000, enableHighAccuracy: false }).then((position) => {      
+        this.params.location = {lat:position.coords.latitude, long:position.coords.longitude};  
+        this.imgService.addImageItem(this.params);
+        this.router.navigate(['/story']);        
+    }, (err) => {
+        console.log(err, 'getCurrentPosition error');
+
+    });        
        }, (err) => {
         // Handle error
        });
-    } 
+    }    
 }
